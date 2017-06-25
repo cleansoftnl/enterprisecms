@@ -37,7 +37,7 @@
             "WebEd\\Plugins\\ContactForm\\": "plugins/contact-form/src",
             "WebEd\\Plugins\\DashboardStyleGuide\\": "plugins/dashboard-style-guide/src",
             "WebEd\\Plugins\\Ecommerce\\": "plugins/ecommerce-customers/src",
-            "WebEd\\Themes\\Sedna\\": "D:\\CleanSoft\\Projects\\enterprisecrm\\themes\\sedna/src"
+            "WebEd\\Themes\\Triangle\\": "D:\\CleanSoft\\Projects\\enterprisecrm\\themes\\triangle/src"
         }
     },
     "scripts": {

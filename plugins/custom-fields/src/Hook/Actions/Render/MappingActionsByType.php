@@ -26,12 +26,13 @@ class MappingActionsByType
      */
     protected $rendererClass;
 
+//BaseModelContract
     /**
      * @param string $location: type of the current object. Currently support the type in $this->mapping
      * @param string $type
      * @param BaseModelContract $item
      */
-    public function handle($location, $type, BaseModelContract $item = null)
+    public function handle($location, $type, $item = null)
     {
         /**
          * Just render custom fields for main meta box

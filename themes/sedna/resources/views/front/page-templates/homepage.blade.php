@@ -22,17 +22,17 @@
     <section class="intro section-padding">
         <div class="container">
             <div class="row">
-                @foreach(get_field($object, 'intro_boxes') as $item)
+
                     <div class="col-md-4 intro-feature">
                         <div class="intro-icon">
-                            <span data-icon="{!! get_sub_field($item, 'icon') !!}" class="icon"></span>
+                            <span data-icon="icon" class="icon"></span>
                         </div>
                         <div class="intro-content">
-                            <h5>{{ get_sub_field($item, 'title') }}</h5>
-                            <p>{{ get_sub_field($item, 'intro_text') }}</p>
+                            <h5>title</h5>
+                            <p>&nbsp;</p>
                         </div>
                     </div>
-                @endforeach
+
             </div>
         </div>
     </section>
@@ -42,20 +42,20 @@
             <div class="row">
                 <div class="col-md-5 col-md-offset-7">
                     <div class="feature-list">
-                        <h3>{{ get_field($object, 'big_title') }}</h3>
-                        <p>{{ get_field($object, 'big_intro_text') }}</p>
+                        <h3>title</h3>
+                        <p>Intro</p>
                         <ul class="features-stack">
-                            @foreach(get_field($object, 'feature_stacks') as $item)
+
                                 <li class="feature-item">
                                     <div class="feature-icon">
-                                        <span data-icon="{!! get_sub_field($item, 'icon') !!}" class="icon"></span>
+                                        <span data-icon="icon" class="icon"></span>
                                     </div>
                                     <div class="feature-content">
-                                        <h5>{{ get_sub_field($item, 'title') }}</h5>
-                                        <p>{{ get_sub_field($item, 'intro_text') }}</p>
+                                        <h5>title</h5>
+                                        <p>txt</p>
                                     </div>
                                 </li>
-                            @endforeach
+
                         </ul>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="feature-list">
-                        {!! get_field($object, 'content') !!}
+                        list
                     </div>
                 </div>
             </div>
@@ -104,16 +104,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h3>{{ get_field($object, 'big_title') }}</h3>
+                    <h3>title</h3>
                 </div>
             </div>
             <div class="row">
-                @foreach(get_field($object, 'blog_intro_boxes') as $key => $item)
-                    <div class="col-md-6 col-sm-12 col-xs-12 {{ $key == 0 || $key % 2 == 0 ? 'leftcol' : 'rightcol' }}">
-                        <h5>{{ get_sub_field($item, 'title') }}</h5>
-                        <p>{{ get_sub_field($item, 'content') }}</p>
-                    </div>
-                @endforeach
             </div>
         </div>
     </section>
@@ -122,15 +116,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="flexslider">
-                        <ul class="slides">
-                            @foreach(get_field($object, 'testimonials') as $item)
-                            <li>
-                                <div class="avatar"><img src="{{ asset('themes/sedna/img/avatar.jpg') }}" alt="Sedna Testimonial Avatar"></div>
-                                <h2>"{{ get_sub_field($item, 'quote') }}"</h2>
-                                <p class="author">{{ get_sub_field($item, 'name') }}</p>
-                            </li>
-                            @endforeach
-                        </ul>
                     </div>
                 </div>
             </div>

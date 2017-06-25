@@ -3,7 +3,7 @@
         <div class="header-content">
             <div class="logo">
                 <a href="{{ url('') }}">
-                    <img src="{{ get_image(get_settings('site_logo', 'themes/sedna/img/sedna-logo.png')) }}" alt="Sedna logo">
+                    <img src="{{ get_image(get_setting('site_logo', 'themes/sedna/img/sedna-logo.png')) }}" alt="Sedna logo">
                 </a>
             </div>
             <div class="header-nav">

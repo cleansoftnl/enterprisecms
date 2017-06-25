@@ -46,7 +46,8 @@ class PageController extends AbstractController
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param Page $page
+     * @return mixed
      */
     protected function defaultTemplate()
     {

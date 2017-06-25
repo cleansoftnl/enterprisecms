@@ -22,11 +22,15 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <link href="themes/triangle/css/bootstrap.min.css" rel="stylesheet">
-    <link href="themes/triangle/css/font-awesome.min.css" rel="stylesheet">
+
     <link href="themes/triangle/css/animate.min.css" rel="stylesheet">
     <link href="themes/triangle/css/lightbox.css" rel="stylesheet">
     <link href="themes/triangle/css/main.css" rel="stylesheet">
     <link href="themes/triangle/css/responsive.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
 
     @php do_action('front_header_css') @endphp
 
@@ -35,7 +39,7 @@
     @php do_action('front_header_js') @endphp
 </head>
 
-<body class="{{ $bodyClass or '' }} @php do_action('front_body_class') @endphp">
+<body class="{{ $bodyClass or '' }} @php do_action('front_body_class') @endphp" id="top">
 
 <div class="wrapper" id="site_wrapper">
     @php do_action('front_before_header_wrapper_content') @endphp
@@ -68,7 +72,8 @@
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript" src="themes/triangle/js/jquery.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{ asset('themes/triangle/js/vendor/jquery-1.11.2.min.js') }}"><\/script>')</script>
 <script type="text/javascript" src="themes/triangle/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="themes/triangle/js/lightbox.min.js"></script>
 <script type="text/javascript" src="themes/triangle/js/wow.min.js"></script>
@@ -81,14 +86,7 @@
 @yield('js-init')
 
 <div id="fb-root"></div>
-<script>(function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=867766230033521";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+
 
 </body>
 

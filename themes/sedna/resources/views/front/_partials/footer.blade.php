@@ -13,10 +13,10 @@
             </div>
             <div class="social-share">
                 <p>Share WebEd with your friends</p>
-                <a href="{{ get_settings('twitter') }}" class="twitter-share">
+                <a href="{{ get_setting('twitter') }}" class="twitter-share">
                     <i class="fa fa-twitter"></i>
                 </a>
-                <a href="{{ get_settings('facebook') }}" class="facebook-share">
+                <a href="{{ get_setting('facebook') }}" class="facebook-share">
                     <i class="fa fa-facebook"></i>
                 </a>
             </div>

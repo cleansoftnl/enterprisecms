@@ -35,13 +35,15 @@ class PageController extends AbstractController
     {
         $this->dis = $data;
 
+        $this->page = $item;
+
         $this->getMenu('page', $item->id);
 
         $happyMethod = '_template_' . studly_case($item->page_template);
 
-        if(method_exists($this, $happyMethod)) {
+        /*if(method_exists($this, $happyMethod)) {
             return $this->$happyMethod();
-        }
+        }*/
 
         return $this->defaultTemplate();
     }
