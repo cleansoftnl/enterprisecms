@@ -8,7 +8,6 @@ Homestead.json
 Homestead.yaml
 .env
 composer.lock
-/config/webed-*.php
 /public/admin
 /public/themes
 /public/uploads

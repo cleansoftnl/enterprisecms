@@ -1,0 +1,10 @@
+{
+    "alias": "webed-contact-form",
+    "name": "WebEd contact form",
+    "author": "Tedozi Manson",
+    "description": "WebEd contact form",
+    "namespace": "WebEd\\Plugins\\ContactForm",
+    "version": "3.1.6",
+    "autoload": "psr-4",
+    "require": {}
+}

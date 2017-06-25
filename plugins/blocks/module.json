@@ -1,0 +1,9 @@
+{
+    "alias": "webed-blocks",
+    "name": "WebEd CMS blocks",
+    "author": "Tedozi Manson",
+    "description": "WebEd CMS blocks",
+    "namespace": "WebEd\\Plugins\\Blocks",
+    "version": "3.0.2",
+    "autoload": "psr-4"
+}
