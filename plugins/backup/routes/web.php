@@ -2,7 +2,7 @@
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
-$adminRoute = config('webed.admin_route');
+$adminRoute = config('webed.system_route');
 
 $moduleRoute = 'backup';
 
