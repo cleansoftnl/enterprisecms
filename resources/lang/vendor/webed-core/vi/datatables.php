@@ -6,7 +6,7 @@ return [
     'search' => 'Tìm kiếm',
     'submit' => 'Thực hiện',
 
-    'active_these_items' => 'Kích hoạt các mục này',
+    'activate_these_items' => 'Kích hoạt các mục này',
     'disable_these_items' => 'Vô hiệu hóa các mục này',
     'delete_these_items' => 'Xóa các mục này',
 

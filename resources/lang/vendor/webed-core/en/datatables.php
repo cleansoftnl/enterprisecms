@@ -6,7 +6,7 @@ return [
     'search' => 'Search',
     'submit' => 'Submit',
 
-    'active_these_items' => 'Active these items',
+    'activate_these_items' => 'ActivATE these items',
     'disable_these_items' => 'Disable these items',
     'delete_these_items' => 'Delete these items',
 

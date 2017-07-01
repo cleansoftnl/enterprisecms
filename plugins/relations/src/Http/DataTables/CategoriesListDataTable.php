@@ -1,22 +1,20 @@
-<?php namespace WebEd\Plugins\Blog\Http\DataTables;
+<?php namespace WebEd\Modules\Relations\Http\DataTables;
 
-use Illuminate\Database\Eloquent\Builder;
 use WebEd\Base\Http\DataTables\AbstractDataTables;
-use WebEd\Plugins\Blog\Models\Post;
 use Yajra\Datatables\Engines\CollectionEngine;
 use Yajra\Datatables\Engines\EloquentEngine;
 use Yajra\Datatables\Engines\QueryBuilderEngine;
 
-class PostsListDataTable extends AbstractDataTables
+class CategoriesListDataTable extends AbstractDataTables
 {
     /**
-     * @var Post|Builder
+     * @var \Illuminate\Support\Collection
      */
-    protected $model;
+    protected $repository;
 
     public function __construct()
     {
-        $this->model = Post::select('id', 'created_at', 'title', 'page_template', 'status', 'order', 'is_featured');
+        $this->repository = collect(get_categories());
     }
 
     public function headings()
@@ -28,7 +26,7 @@ class PostsListDataTable extends AbstractDataTables
             ],
             'title' => [
                 'title' => trans('webed-core::datatables.heading.title'),
-                'width' => '30%',
+                'width' => '25%',
             ],
             'page_template' => [
                 'title' => trans('webed-core::datatables.heading.page_template'),
@@ -48,7 +46,7 @@ class PostsListDataTable extends AbstractDataTables
             ],
             'actions' => [
                 'title' => trans('webed-core::datatables.heading.actions'),
-                'width' => '30%',
+                'width' => '20%',
             ],
         ];
     }
@@ -57,12 +55,12 @@ class PostsListDataTable extends AbstractDataTables
     {
         return [
             ['data' => 'id', 'name' => 'id', 'searchable' => false, 'orderable' => false],
-            ['data' => 'viewID', 'name' => 'id'],
-            ['data' => 'title', 'name' => 'title'],
-            ['data' => 'page_template', 'name' => 'page_template'],
-            ['data' => 'status', 'name' => 'status'],
-            ['data' => 'order', 'name' => 'order', 'searchable' => false],
-            ['data' => 'created_at', 'name' => 'created_at', 'searchable' => false],
+            ['data' => 'viewID', 'name' => 'id', 'searchable' => false, 'orderable' => false],
+            ['data' => 'title', 'name' => 'title', 'searchable' => false, 'orderable' => false],
+            ['data' => 'page_template', 'name' => 'page_template', 'orderable' => false],
+            ['data' => 'status', 'name' => 'status', 'searchable' => false, 'orderable' => false],
+            ['data' => 'order', 'name' => 'order', 'searchable' => false, 'orderable' => false],
+            ['data' => 'created_at', 'name' => 'created_at', 'searchable' => false, 'orderable' => false],
             ['data' => 'actions', 'name' => 'actions', 'searchable' => false, 'orderable' => false],
         ];
     }
@@ -72,30 +70,11 @@ class PostsListDataTable extends AbstractDataTables
      */
     public function run()
     {
-        $this->setAjaxUrl(route('admin::blog.relations.index.post'), 'POST');
-
-        $this
-            ->addFilter(1, form()->text('id', '', [
-                'class' => 'form-control form-filter input-sm',
-                'placeholder' => trans('webed-core::datatables.search') . '...',
-            ]))
-            ->addFilter(2, form()->text('title', '', [
-                'class' => 'form-control form-filter input-sm',
-                'placeholder' => trans('webed-core::datatables.search') . '...',
-            ]))
-            ->addFilter(3, form()->select('page_template', get_templates('blog_post'), null, [
-                'class' => 'form-control form-filter input-sm',
-                'placeholder' => trans('webed-core::datatables.search') . '...',
-            ]))
-            ->addFilter(4, form()->select('status', [
-                '' => '',
-                'activated' => 'Activated',
-                'disabled' => 'Disabled',
-                'is_featured' => 'Featured'
-            ], null, ['class' => 'form-control form-filter input-sm']));
+        $this->setAjaxUrl(route('admin::blog.categories.index.post'), 'POST');
 
         $this->withGroupActions([
             '' => trans('webed-core::datatables.select') . '...',
+            'deleted' => trans('webed-core::datatables.delete_these_items'),
             'activated' => trans('webed-core::datatables.activate_these_items'),
             'disabled' => trans('webed-core::datatables.disable_these_items'),
         ]);
@@ -108,36 +87,28 @@ class PostsListDataTable extends AbstractDataTables
      */
     protected function fetchDataForAjax()
     {
-        return datatable()->of($this->model)
-            ->rawColumns(['actions', 'status'])
-            ->filterColumn('status', function ($query, $keyword) {
-                /**
-                 * @var Post|Builder $query
-                 */
-                if ($keyword === 'is_featured') {
-                    return $query->where('is_featured', '=', 1);
-                } else {
-                    return $query->where('status', '=', $keyword);
-                }
+        return datatable()->of($this->repository)
+            ->rawColumns(['actions'])
+            ->editColumn('id', function ($item) {
+                return form()->customCheckbox([['id[]', $item->id]]);
             })
             ->addColumn('viewID', function ($item) {
                 return $item->id;
             })
-            ->editColumn('id', function ($item) {
-                return form()->customCheckbox([['id[]', $item->id]]);
+            ->editColumn('title', function ($item) {
+                return $item->indent_text . $item->title;
             })
             ->editColumn('status', function ($item) {
-                $featured = ($item->is_featured) ? '<br><br>' . html()->label('featured', 'purple') : '';
-                return html()->label(trans('webed-core::base.status.' . $item->status), $item->status) . $featured;
+                return html()->label(trans('webed-core::base.status.' . $item->status), $item->status);
             })
             ->addColumn('actions', function ($item) {
                 /*Edit link*/
-                $activeLink = route('admin::blog.relations.update-status.post', ['id' => $item->id, 'status' => 'activated']);
-                $disableLink = route('admin::blog.relations.update-status.post', ['id' => $item->id, 'status' => 'disabled']);
-                $deleteLink = route('admin::blog.relations.delete.delete', ['id' => $item->id]);
+                $activeLink = route('admin::blog.categories.update-status.post', ['id' => $item->id, 'status' => 'activated']);
+                $disableLink = route('admin::blog.categories.update-status.post', ['id' => $item->id, 'status' => 'disabled']);
+                $deleteLink = route('admin::blog.categories.delete.delete', ['id' => $item->id]);
 
                 /*Buttons*/
-                $editBtn = link_to(route('admin::blog.relations.edit.get', ['id' => $item->id]), trans('webed-core::datatables.edit'), ['class' => 'btn btn-sm btn-outline green']);
+                $editBtn = link_to(route('admin::blog.categories.edit.get', ['id' => $item->id]), trans('webed-core::datatables.edit'), ['class' => 'btn btn-sm btn-outline green']);
                 $activeBtn = ($item->status != 'activated') ? form()->button(trans('webed-core::datatables.active'), [
                     'title' => trans('webed-core::datatables.activate_this_item'),
                     'data-ajax' => $activeLink,

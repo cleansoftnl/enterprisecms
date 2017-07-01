@@ -1,22 +1,22 @@
-<?php namespace WebEd\Plugins\Blog\Http\DataTables;
+<?php namespace WebEd\Modules\Relations\Http\DataTables;
 
 use Illuminate\Database\Eloquent\Builder;
 use WebEd\Base\Http\DataTables\AbstractDataTables;
-use WebEd\Plugins\Blog\Models\Post;
+use WebEd\Modules\Relations\Models\Relation;
 use Yajra\Datatables\Engines\CollectionEngine;
 use Yajra\Datatables\Engines\EloquentEngine;
 use Yajra\Datatables\Engines\QueryBuilderEngine;
 
-class PostsListDataTable extends AbstractDataTables
+class RelationsListDataTable extends AbstractDataTables
 {
     /**
-     * @var Post|Builder
+     * @var Relation|Builder
      */
     protected $model;
 
     public function __construct()
     {
-        $this->model = Post::select('id', 'created_at', 'title', 'page_template', 'status', 'order', 'is_featured');
+        $this->model = Relation::select('id', 'created_at', 'relationname', 'slug');
     }
 
     public function headings()
@@ -26,21 +26,13 @@ class PostsListDataTable extends AbstractDataTables
                 'title' => 'ID',
                 'width' => '5%',
             ],
-            'title' => [
-                'title' => trans('webed-core::datatables.heading.title'),
-                'width' => '30%',
+            'relationname' => [
+                'title' => trans('relations::base.datatables.heading.relationname'),
+                'width' => '35%',
             ],
-            'page_template' => [
-                'title' => trans('webed-core::datatables.heading.page_template'),
-                'width' => '15%',
-            ],
-            'status' => [
-                'title' => trans('webed-core::datatables.heading.status'),
-                'width' => '10%',
-            ],
-            'order' => [
-                'title' => trans('webed-core::datatables.heading.order'),
-                'width' => '10%',
+            'slug' => [
+                'title' => trans('webed-core::datatables.heading.slug'),
+                'width' => '20%',
             ],
             'created_at' => [
                 'title' => trans('webed-core::datatables.heading.created_at'),
@@ -58,10 +50,8 @@ class PostsListDataTable extends AbstractDataTables
         return [
             ['data' => 'id', 'name' => 'id', 'searchable' => false, 'orderable' => false],
             ['data' => 'viewID', 'name' => 'id'],
-            ['data' => 'title', 'name' => 'title'],
-            ['data' => 'page_template', 'name' => 'page_template'],
-            ['data' => 'status', 'name' => 'status'],
-            ['data' => 'order', 'name' => 'order', 'searchable' => false],
+            ['data' => 'relationname', 'name' => 'relationname'],
+            ['data' => 'slug', 'name' => 'slug'],
             ['data' => 'created_at', 'name' => 'created_at', 'searchable' => false],
             ['data' => 'actions', 'name' => 'actions', 'searchable' => false, 'orderable' => false],
         ];
@@ -72,18 +62,18 @@ class PostsListDataTable extends AbstractDataTables
      */
     public function run()
     {
-        $this->setAjaxUrl(route('admin::blog.relations.index.post'), 'POST');
+        $this->setAjaxUrl(route('admin::relations.relations.index.post'), 'POST');
 
         $this
             ->addFilter(1, form()->text('id', '', [
                 'class' => 'form-control form-filter input-sm',
                 'placeholder' => trans('webed-core::datatables.search') . '...',
             ]))
-            ->addFilter(2, form()->text('title', '', [
+            ->addFilter(2, form()->text('relationname', '', [
                 'class' => 'form-control form-filter input-sm',
                 'placeholder' => trans('webed-core::datatables.search') . '...',
             ]))
-            ->addFilter(3, form()->select('page_template', get_templates('blog_post'), null, [
+            ->addFilter(3, form()->select('slug', get_templates('slug'), null, [
                 'class' => 'form-control form-filter input-sm',
                 'placeholder' => trans('webed-core::datatables.search') . '...',
             ]))
@@ -109,35 +99,107 @@ class PostsListDataTable extends AbstractDataTables
     protected function fetchDataForAjax()
     {
         return datatable()->of($this->model)
-            ->rawColumns(['actions', 'status'])
+            //'status'
+            ->rawColumns(['actions'])
+            /*
             ->filterColumn('status', function ($query, $keyword) {
                 /**
-                 * @var Post|Builder $query
-                 */
+                 * @var Relation|Builder $query
+                 *  /
                 if ($keyword === 'is_featured') {
                     return $query->where('is_featured', '=', 1);
                 } else {
                     return $query->where('status', '=', $keyword);
                 }
             })
+            */
             ->addColumn('viewID', function ($item) {
                 return $item->id;
             })
             ->editColumn('id', function ($item) {
                 return form()->customCheckbox([['id[]', $item->id]]);
             })
+
+/*
+->addColumn('actions', function ($item) {
+    $activeBtn = (!array_get($item, 'enabled')) ? form()->button(trans('webed-modules-management::datatables.active'), [
+        'title' => trans('webed-modules-management::datatables.activate_this_plugin'),
+        'data-ajax' => route('admin::plugins.change-status.post', [
+            'module' => array_get($item, 'alias'),
+            'status' => 1,
+        ]),
+        'data-method' => 'POST',
+        'data-toggle' => 'confirmation',
+        'class' => 'btn btn-outline green btn-sm ajax-link',
+    ]) : '';
+
+    $disableBtn = (array_get($item, 'enabled')) ? form()->button(trans('webed-modules-management::datatables.disable'), [
+        'title' => trans('webed-modules-management::datatables.disable_this_plugin'),
+        'data-ajax' => route('admin::plugins.change-status.post', [
+            'module' => array_get($item, 'alias'),
+            'status' => 0,
+        ]),
+        'data-method' => 'POST',
+        'data-toggle' => 'confirmation',
+        'class' => 'btn btn-outline yellow-lemon btn-sm ajax-link',
+    ]) : '';
+
+    $installBtn = (array_get($item, 'enabled') && !array_get($item, 'installed')) ? form()->button(trans('webed-modules-management::datatables.install'), [
+        'title' => trans('webed-modules-management::datatables.install_this_plugin'),
+        'data-ajax' => route('admin::plugins.install.post', [
+            'module' => array_get($item, 'alias'),
+        ]),
+        'data-method' => 'POST',
+        'data-toggle' => 'confirmation',
+        'class' => 'btn btn-outline blue btn-sm ajax-link',
+    ]) : '';
+
+    $updateBtn = (
+        array_get($item, 'enabled') &&
+        array_get($item, 'installed') &&
+        version_compare(array_get($item, 'installed_version'), array_get($item, 'version'), '<')
+    )
+        ? form()->button(trans('webed-modules-management::datatables.update'), [
+            'title' => trans('webed-modules-management::datatables.update_this_plugin'),
+            'data-ajax' => route('admin::plugins.update.post', [
+                'module' => array_get($item, 'alias'),
+            ]),
+            'data-method' => 'POST',
+            'data-toggle' => 'confirmation',
+            'class' => 'btn btn-outline purple btn-sm ajax-link',
+        ])
+        : '';
+
+    $uninstallBtn = (array_get($item, 'enabled') && array_get($item, 'installed')) ? form()->button(trans('webed-modules-management::datatables.uninstall'), [
+        'title' => trans('webed-modules-management::datatables.uninstall_this_plugin'),
+        'data-ajax' => route('admin::plugins.uninstall.post', [
+            'module' => array_get($item, 'alias'),
+        ]),
+        'data-method' => 'POST',
+        'data-toggle' => 'confirmation',
+        'class' => 'btn btn-outline red-sunglo btn-sm ajax-link',
+    ]) : '';
+
+    return $activeBtn . $disableBtn . $installBtn . $updateBtn . $uninstallBtn;
+});
+ **/
+
+
+
+            /*
             ->editColumn('status', function ($item) {
                 $featured = ($item->is_featured) ? '<br><br>' . html()->label('featured', 'purple') : '';
                 return html()->label(trans('webed-core::base.status.' . $item->status), $item->status) . $featured;
             })
+            */
             ->addColumn('actions', function ($item) {
                 /*Edit link*/
-                $activeLink = route('admin::blog.relations.update-status.post', ['id' => $item->id, 'status' => 'activated']);
-                $disableLink = route('admin::blog.relations.update-status.post', ['id' => $item->id, 'status' => 'disabled']);
-                $deleteLink = route('admin::blog.relations.delete.delete', ['id' => $item->id]);
+                $activeLink = route('admin::relations.relations.update-status.post', ['id' => $item->id, 'status' => 'activated']);
+                $disableLink = route('admin::relations.relations.update-status.post', ['id' => $item->id, 'status' => 'disabled']);
+                $deleteLink = route('admin::relations.relations.delete.delete', ['id' => $item->id]);
 
                 /*Buttons*/
-                $editBtn = link_to(route('admin::blog.relations.edit.get', ['id' => $item->id]), trans('webed-core::datatables.edit'), ['class' => 'btn btn-sm btn-outline green']);
+                $editBtn = link_to(route('admin::relations.relations.edit.get', ['id' => $item->id]), trans('webed-core::datatables.edit'), ['class' => 'btn btn-sm btn-outline green']);
                 $activeBtn = ($item->status != 'activated') ? form()->button(trans('webed-core::datatables.active'), [
                     'title' => trans('webed-core::datatables.activate_this_item'),
                     'data-ajax' => $activeLink,

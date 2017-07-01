@@ -1,0 +1,10 @@
+{
+    "alias": "webed-relations",
+    "name": "Relations",
+    "author": "author",
+    "description": "Relations",
+    "namespace": "WebEd\\Modules\\Relations",
+    "version": "1.0",
+    "autoload": "psr-4",
+    "require": {}
+}

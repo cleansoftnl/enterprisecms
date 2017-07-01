@@ -89,7 +89,7 @@ class TagsListDataTable extends AbstractDataTables
         $this->withGroupActions([
             '' => trans('webed-core::datatables.select') . '...',
             'deleted' => trans('webed-core::datatables.delete_these_items'),
-            'activated' => trans('webed-core::datatables.active_these_items'),
+            'activated' => trans('webed-core::datatables.activate_these_items'),
             'disabled' => trans('webed-core::datatables.disable_these_items'),
         ]);
 
