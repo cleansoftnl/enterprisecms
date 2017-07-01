@@ -72,7 +72,7 @@ class PostsListDataTable extends AbstractDataTables
      */
     public function run()
     {
-        $this->setAjaxUrl(route('admin::blog.posts.index.post'), 'POST');
+        $this->setAjaxUrl(route('admin::blog.relations.index.post'), 'POST');
 
         $this
             ->addFilter(1, form()->text('id', '', [
@@ -132,14 +132,14 @@ class PostsListDataTable extends AbstractDataTables
             })
             ->addColumn('actions', function ($item) {
                 /*Edit link*/
-                $activeLink = route('admin::blog.posts.update-status.post', ['id' => $item->id, 'status' => 'activated']);
-                $disableLink = route('admin::blog.posts.update-status.post', ['id' => $item->id, 'status' => 'disabled']);
-                $deleteLink = route('admin::blog.posts.delete.delete', ['id' => $item->id]);
+                $activeLink = route('admin::blog.relations.update-status.post', ['id' => $item->id, 'status' => 'activated']);
+                $disableLink = route('admin::blog.relations.update-status.post', ['id' => $item->id, 'status' => 'disabled']);
+                $deleteLink = route('admin::blog.relations.delete.delete', ['id' => $item->id]);
 
                 /*Buttons*/
-                $editBtn = link_to(route('admin::blog.posts.edit.get', ['id' => $item->id]), trans('webed-core::datatables.edit'), ['class' => 'btn btn-sm btn-outline green']);
+                $editBtn = link_to(route('admin::blog.relations.edit.get', ['id' => $item->id]), trans('webed-core::datatables.edit'), ['class' => 'btn btn-sm btn-outline green']);
                 $activeBtn = ($item->status != 'activated') ? form()->button(trans('webed-core::datatables.active'), [
-                    'title' => trans('webed-core::datatables.active_this_item'),
+                    'title' => trans('webed-core::datatables.activate_this_item'),
                     'data-ajax' => $activeLink,
                     'data-method' => 'POST',
                     'data-toggle' => 'confirmation',

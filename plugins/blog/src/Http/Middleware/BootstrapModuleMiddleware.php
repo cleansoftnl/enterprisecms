@@ -20,7 +20,7 @@ class BootstrapModuleMiddleware
      */
     public function handle($request, Closure $next)
     {
-        admin_bar()->registerLink('Post', route('admin::blog.posts.create.get'), 'add-new');
+        admin_bar()->registerLink('Relation', route('admin::blog.posts.create.get'), 'add-new');
         admin_bar()->registerLink('Category', route('admin::blog.categories.create.get'), 'add-new');
 
         /**

@@ -4,16 +4,16 @@ return [
     'page_title' => 'Blog',
 
     'admin_menu' => [
-        'posts' => 'Posts',
+        'relations' => 'Posts',
         'categories' => 'Categories',
         'tags' => 'Tags',
     ],
 
-    'posts' => [
+    'relations' => [
         'page_title' => 'Posts',
         'edit_item' => 'Edit post',
 
-        'all' => 'All posts',
+        'all' => 'All relations',
 
         'form' => [
             'create_post' => 'Create new post',

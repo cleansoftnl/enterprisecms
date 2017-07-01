@@ -1,4 +1,5 @@
-<?php namespace WebEd\Plugins\Blog\Providers;
+<?php
+namespace WebEd\Plugins\Blog\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Schema;
@@ -34,7 +35,7 @@ class UninstallModuleServiceProvider extends ServiceProvider
     protected function booted()
     {
         acl_permission()
-            ->unsetPermissionByModule($this->module);
+        ->unsetPermissionByModule($this->moduleAlias);
 
         $this->dropSchema();
     }
@@ -44,7 +45,7 @@ class UninstallModuleServiceProvider extends ServiceProvider
         Schema::dropIfExists('posts_categories');
         Schema::dropIfExists('posts_tags');
         Schema::dropIfExists('blog_tags');
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('relations');
         Schema::dropIfExists('categories');
     }
 }

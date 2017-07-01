@@ -1,4 +1,5 @@
-<?php namespace WebEd\Plugins\Blog\Providers;
+<?php
+namespace WebEd\Plugins\Blog\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;

@@ -13,7 +13,7 @@ return [
     'uninstall' => 'Gỡ bỏ',
     'update' => 'Cập nhật',
 
-    'active_this_plugin' => 'Kích hoạt bộ mở rộng này',
+    'activate_this_plugin' => 'Kích hoạt bộ mở rộng này',
     'disable_this_plugin' => 'Tạm ngừng bộ mở rộng này',
     'install_this_plugin' => 'Cài đặt các mục liên quan của bộ mở rộng',
     'uninstall_this_plugin' => 'Gỡ bỏ các mục liên quan của bộ mở rộng',

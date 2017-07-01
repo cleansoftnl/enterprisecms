@@ -42,11 +42,11 @@ class HookServiceProvider extends ServiceProvider
          * Register blog actions
          */
         add_action(
-            'blog.posts.after-edit.post',
+            'blog.relations.after-edit.post',
             [\WebEd\Plugins\CustomFields\Hook\Actions\Store\Posts::class, 'afterSaveContent']
         );
         add_action(
-            'blog.posts.after-create.post',
+            'blog.relations.after-create.post',
             [\WebEd\Plugins\CustomFields\Hook\Actions\Store\Posts::class, 'afterSaveContent']
         );
         add_action(

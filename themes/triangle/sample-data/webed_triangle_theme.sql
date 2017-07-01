@@ -640,7 +640,7 @@ CREATE TABLE `view_trackers` (
 --  Records of `view_trackers`
 -- ----------------------------
 BEGIN;
-INSERT INTO `view_trackers` VALUES ('1', 'WebEd\\Base\\Pages\\Models\\Page', '1', '368'), ('2', 'WebEd\\Base\\Pages\\Models\\Page', '3', '4'), ('3', 'WebEd\\Plugins\\Blog\\Models\\Category', '1', '80'), ('4', 'WebEd\\Plugins\\Blog\\Models\\Post', '1', '4'), ('5', 'WebEd\\Plugins\\Blog\\Models\\Post', '3', '34'), ('6', 'WebEd\\Plugins\\Blog\\Models\\Post', '2', '1'), ('7', 'WebEd\\Plugins\\Blog\\Models\\Post', '4', '3');
+INSERT INTO `view_trackers` VALUES ('1', 'WebEd\\Base\\Pages\\Models\\Page', '1', '368'), ('2', 'WebEd\\Base\\Pages\\Models\\Page', '3', '4'), ('3', 'WebEd\\Plugins\\Blog\\Models\\Category', '1', '80'), ('4', 'WebEd\\Plugins\\Blog\\Models\\Relation', '1', '4'), ('5', 'WebEd\\Plugins\\Blog\\Models\\Relation', '3', '34'), ('6', 'WebEd\\Plugins\\Blog\\Models\\Relation', '2', '1'), ('7', 'WebEd\\Plugins\\Blog\\Models\\Relation', '4', '3');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

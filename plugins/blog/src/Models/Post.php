@@ -6,7 +6,7 @@ use WebEd\Base\Models\EloquentBase as BaseModel;
 
 class Post extends BaseModel implements PostModelContract
 {
-    protected $table = 'posts';
+    protected $table = 'relations';
 
     protected $primaryKey = 'id';
 

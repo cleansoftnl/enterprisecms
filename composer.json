@@ -14,6 +14,7 @@
         "filp/whoops": "^2.1",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
+        "nwidart/laravel-modules": "^1.25",
         "sgsoft-studio/base": "3.1.*"
     },
     "require-dev": {
@@ -37,7 +38,8 @@
             "WebEd\\Plugins\\ContactForm\\": "plugins/contact-form/src",
             "WebEd\\Plugins\\DashboardStyleGuide\\": "plugins/dashboard-style-guide/src",
             "WebEd\\Plugins\\Ecommerce\\": "plugins/ecommerce-customers/src",
-            "WebEd\\Themes\\Triangle\\": "D:\\CleanSoft\\Projects\\enterprisecrm\\themes\\triangle/src"
+            "WebEd\\Themes\\Triangle\\": "themes/triangle/src",
+            "WebEd\\Modules\\Relations\\": "D:\\CleanSoft\\Projects\\enterprisecrm\\plugins\\relations/src"
         }
     },
     "scripts": {

@@ -1,4 +1,5 @@
-<?php namespace WebEd\Plugins\Blog\Providers;
+<?php
+namespace WebEd\Plugins\Blog\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use WebEd\Plugins\Blog\Models\BlogTag;

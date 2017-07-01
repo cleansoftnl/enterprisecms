@@ -118,7 +118,7 @@ class TagsListDataTable extends AbstractDataTables
                 /*Buttons*/
                 $editBtn = link_to(route('admin::blog.tags.edit.get', ['id' => $item->id]), trans('webed-core::datatables.edit'), ['class' => 'btn btn-sm btn-outline green']);
                 $activeBtn = ($item->status != 'activated') ? form()->button(trans('webed-core::datatables.active'), [
-                    'title' => trans('webed-core::datatables.active_this_item'),
+                    'title' => trans('webed-core::datatables.activate_this_item'),
                     'data-ajax' => $activeLink,
                     'data-method' => 'POST',
                     'data-toggle' => 'confirmation',

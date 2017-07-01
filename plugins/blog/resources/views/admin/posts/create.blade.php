@@ -127,7 +127,7 @@
             ])
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{ trans('webed-blog::base.posts.form.primary_category') }}</h3>
+                    <h3 class="box-title">{{ trans('relations') }}</h3>
                     <div class="box-tools">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse">
                             <i class="fa fa-minus"></i>
@@ -146,7 +146,7 @@
             </div>
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{ trans('webed-blog::base.posts.form.tags') }}</h3>
+                    <h3 class="box-title">{{ trans('relations') }}</h3>
                     <div class="box-tools">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse">
                             <i class="fa fa-minus"></i>

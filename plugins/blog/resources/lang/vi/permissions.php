@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'view-posts' => 'Xem danh sách bài viết',
-    'create-posts' => 'Tạo bài viết mới',
-    'update-posts' => 'Cập nhật bài viết',
-    'delete-posts' => 'Xóa bài viết',
+    'view-relations' => 'Xem danh sách bài viết',
+    'create-relations' => 'Tạo bài viết mới',
+    'update-relations' => 'Cập nhật bài viết',
+    'delete-relations' => 'Xóa bài viết',
 
     'view-categories' => 'Xem danh sách danh mục bài viết',
     'create-categories' => 'Tạo danh mục bài viết mới',

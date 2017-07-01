@@ -23,7 +23,7 @@
                     </h3>
                     <div class="box-tools">
                         <a class="btn btn-transparent green btn-sm"
-                           href="{{ route('admin::blog.posts.create.get') }}">
+                           href="{{ route('relations') }}">
                             <i class="fa fa-plus"></i> {{ trans('webed-core::base.form.create') }}
                         </a>
                     </div>

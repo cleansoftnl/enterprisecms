@@ -11,7 +11,7 @@ class Posts extends AbstractRenderer
      */
     public function render($type, BaseModelContract $item)
     {
-        if (!($type === 'blog.posts.create' || $type === 'blog.posts.edit')) {
+        if (!($type === 'blog.relations.create' || $type === 'blog.relations.edit')) {
             return;
         }
 

@@ -11,7 +11,7 @@ return [
     'delete_these_items' => 'Xóa các mục này',
 
     'view_this_item' => 'Xem mục này',
-    'active_this_item' => 'Kích hoạt mục này',
+    'activate_this_item' => 'Kích hoạt mục này',
     'disable_this_item' => 'Vô hiệu hóa mục này',
     'restore_this_item' => 'Phục hồi lại mục này',
     'delete_this_item' => 'Xóa mục này',

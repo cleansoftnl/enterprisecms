@@ -26,7 +26,7 @@ class WherePostBelongsToTags extends AbstractCriteria
       */
     public function apply($model, AbstractRepositoryContract $repository)
     {
-        return $model->join('posts_tags', 'posts.id', '=', 'posts_tags.post_id')
+        return $model->join('posts_tags', 'relations.id', '=', 'posts_tags.post_id')
             ->join('blog_tags', 'blog_tags.id', '=', 'posts_tags.tag_id')
             ->whereIn('blog_tags.id', $this->tagIds)
             ->distinct()

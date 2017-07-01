@@ -4,12 +4,12 @@ return [
     'page_title' => 'Blog',
 
     'admin_menu' => [
-        'posts' => 'Bài viết',
+        'relations' => 'Bài viết',
         'categories' => 'Danh mục bài viết',
         'tags' => 'Nhãn',
     ],
 
-    'posts' => [
+    'relations' => [
         'page_title' => 'Bài viết',
         'edit_item' => 'Chỉnh sửa bài viết',
 

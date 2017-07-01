@@ -101,7 +101,7 @@ class BootstrapModuleServiceProvider extends ServiceProvider
     {
         if (modules_management()->isActivated('webed-blog') && modules_management()->isInstalled('webed-blog')) {
             custom_field_rules()->registerRuleGroup('Blog')
-                ->registerRule('Blog', 'Post template', 'blog.post_template', get_templates('Post'))
+                ->registerRule('Blog', 'Relation template', 'blog.post_template', get_templates('Relation'))
                 ->registerRule('Blog', 'Category template', 'blog.category_template', get_templates('Category'))
                 ->registerRule('Blog', 'Category', 'blog.category', function () {
                     $categories = get_categories();
@@ -121,9 +121,9 @@ class BootstrapModuleServiceProvider extends ServiceProvider
                     }
                     return $categoriesArr;
                 })
-                ->registerRule('Blog', 'Post with related category template', 'blog.post_with_related_category_template', get_templates('Category'))
+                ->registerRule('Blog', 'Relation with related category template', 'blog.post_with_related_category_template', get_templates('Category'))
                 ->registerRule('Other', 'Model name', 'model_name', [
-                    'blog.post' => '(Blog) Post',
+                    'blog.post' => '(Blog) Relation',
                     'blog.category' => '(Blog) Category',
                 ]);
         }

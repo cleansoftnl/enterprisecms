@@ -1,6 +1,6 @@
 #How to use Custom Fields plugin
 
-####Active this plugin
+####Activate this plugin
 Go through to **Admin Dashboard** --> **Plugins** --> Enable and install this plugin.
 Currently, this plugin support **Pages** and **Blog**.
 

@@ -5,7 +5,7 @@ if (!defined('WEBED_BLOG_TAGS')) {
 }
 
 if (!defined('WEBED_BLOG_POSTS')) {
-    define('WEBED_BLOG_POSTS', 'webed-blog.posts');
+    define('WEBED_BLOG_POSTS', 'webed-blog.relations');
 }
 
 if (!defined('WEBED_BLOG_CATEGORIES')) {
@@ -18,7 +18,7 @@ if (!defined('WEBED_BLOG_GROUP_CACHE_KEY')) {
 
 /*Front hooks*/
 if (!defined('WEBED_BLOG_FRONT_POSTS')) {
-    define('WEBED_BLOG_FRONT_POSTS', 'webed-blog.front-posts');
+    define('WEBED_BLOG_FRONT_POSTS', 'webed-blog.front-relations');
 }
 
 if (!defined('WEBED_BLOG_FRONT_CATEGORIES')) {

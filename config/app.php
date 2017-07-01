@@ -168,7 +168,7 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         WebEd\Base\Providers\ModuleProvider::class,
-
+        Nwidart\Modules\LaravelModulesServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -226,6 +226,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Module' => Nwidart\Modules\Facades\Module::class,
+
+
 
     ],
 

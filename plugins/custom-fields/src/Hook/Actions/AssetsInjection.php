@@ -17,8 +17,8 @@ class AssetsInjection
         /**
          * Blog
          */
-        'admin::blog.posts.create.get',
-        'admin::blog.posts.edit.get',
+        'admin::blog.relations.create.get',
+        'admin::blog.relations.edit.get',
         'admin::blog.categories.create.get',
         'admin::blog.categories.edit.get',
     ];

@@ -1,6 +1,9 @@
 <?php
 
 return [
+
+    'pageLength' => 25,
+
     /**
      * DataTables search options.
      */

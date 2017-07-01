@@ -7,13 +7,13 @@ return [
         'description' => 'Description',
     ],
 
-    'active' => 'Active',
+    'active' => 'ActivATE',
     'disable' => 'Disable',
     'install' => 'Install',
     'uninstall' => 'Uninstall',
     'update' => 'Update',
 
-    'active_this_plugin' => 'Active this plugin',
+    'activate_this_plugin' => 'ActivATE this plugin',
     'disable_this_plugin' => 'Disable this plugin',
     'install_this_plugin' => 'Install this plugin',
     'uninstall_this_plugin' => 'Uninstall this plugin',

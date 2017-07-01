@@ -1,4 +1,5 @@
-<?php namespace WebEd\Plugins\Blog\Providers;
+<?php
+namespace WebEd\Plugins\Blog\Providers;
 
 use WebEd\Plugins\Blog\Http\Middleware\BootstrapModuleMiddleware;
 use Illuminate\Routing\Router;

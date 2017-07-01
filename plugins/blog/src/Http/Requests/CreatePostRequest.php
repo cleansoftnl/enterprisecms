@@ -9,7 +9,7 @@ class CreatePostRequest extends Request
         return [
             'post.page_template' => 'string|max:255|nullable',
             'post.title' => 'string|max:255|required',
-            'post.slug' => 'string|max:255|unique:posts,slug|nullable',
+            'post.slug' => 'string|max:255|unique:relations,slug|nullable',
             'post.description' => 'string|max:1000|nullable',
             'post.content' => 'string|nullable',
             'post.thumbnail' => 'string|max:255|nullable',
