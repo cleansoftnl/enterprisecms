@@ -1,6 +1,6 @@
 <aside class="main-sidebar">
     <section class="sidebar">
-        {{--@if(isset($loggedInUser))
+        @if(isset($loggedInUser))
             <div class="user-panel">
                 <div class="pull-left image">
                     <img src="{{ get_image($loggedInUser->avatar) }}"
@@ -15,13 +15,9 @@
                     </a>
                 </div>
             </div>
-        @endif--}}
-        @php $paneltype = get_panel_type();
-        //echo($paneltype);
-        //die();
-        @endphp
+        @endif
         <ul class="sidebar-menu">
-            {!! DashboardMenu::render($paneltype) !!}
+            {!! DashboardMenu::render() !!}
         </ul>
     </section>
 </aside>

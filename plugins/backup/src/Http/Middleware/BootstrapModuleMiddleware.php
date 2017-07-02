@@ -23,9 +23,10 @@ class BootstrapModuleMiddleware
          */
         dashboard_menu()->registerItem([
             'id' => 'webed-backup',
+            'panelType' => 'systemcp',
             'priority' => 100,
-            'parent_id' => 'webed-configuration',
-            'heading' => null,
+            'parent_id' => null,
+            'heading' => 'Backup, Import & Export',
             'title' => trans('webed-backup::base.menu_title'),
             'font_icon' => 'fa fa-circle-o',
             'link' => route('admin::webed-backup.index.get'),

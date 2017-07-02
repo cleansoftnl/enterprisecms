@@ -1,0 +1,10 @@
+{
+    "alias": "flatly",
+    "name": "Flatly",
+    "author": "author",
+    "description": "Flatly",
+    "namespace": "WebEd\\Themes\\Flatly",
+    "version": "1.0",
+    "autoload": "psr-4",
+    "require": {}
+}

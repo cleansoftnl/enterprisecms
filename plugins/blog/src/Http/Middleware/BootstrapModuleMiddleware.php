@@ -28,6 +28,7 @@ class BootstrapModuleMiddleware
          */
         dashboard_menu()->registerItem([
             'id' => 'webed-blog-posts',
+            'panelType' => 'cmscp',
             'priority' => 2,
             'parent_id' => null,
             'heading' => 'Blog',
@@ -38,8 +39,10 @@ class BootstrapModuleMiddleware
             'permissions' => ['view-posts'],
         ])->registerItem([
             'id' => 'webed-blog-categories',
+            'panelType' => 'crmcp',
             'priority' => 2.1,
             'parent_id' => null,
+            'heading' => 'Tags & Cats',
             'title' => trans('webed-blog::base.admin_menu.categories'),
             'font_icon' => 'fa fa-sitemap',
             'link' => route('admin::blog.categories.index.get'),
@@ -47,8 +50,10 @@ class BootstrapModuleMiddleware
             'permissions' => ['view-categories'],
         ])->registerItem([
             'id' => 'webed-blog-tags',
+            'panelType' => 'crmcp',
             'priority' => 2.2,
             'parent_id' => null,
+            'heading' => 'Tags & Cats',
             'title' => trans('webed-blog::base.admin_menu.tags'),
             'font_icon' => 'icon-tag',
             'link' => route('admin::blog.tags.index.get'),

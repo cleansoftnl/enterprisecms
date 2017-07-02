@@ -27,6 +27,7 @@ class BootstrapModuleMiddleware
          */
         dashboard_menu()->registerItem([
             'id' => 'webed-relations',
+            'panelType' => 'crmcp',
             'priority' => 2.0,
             'parent_id' => null,
             'heading' => 'CRM',

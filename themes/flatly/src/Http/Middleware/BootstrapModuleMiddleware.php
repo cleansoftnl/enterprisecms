@@ -1,4 +1,4 @@
-<?php namespace WebEd\Plugins\ContactForm\Http\Middleware;
+<?php namespace WebEd\Themes\Flatly\Http\Middleware;
 
 use \Closure;
 
@@ -21,18 +21,17 @@ class BootstrapModuleMiddleware
         /**
          * Register to dashboard menu
          */
-        dashboard_menu()->registerItem([
-            'id' => 'webed-contact-form',
-            'panelType' => 'cmscp',
-            'priority' => 999.1,
+        /*dashboard_menu()->registerItem([
+            'id' => 'flatly',
+            'priority' => 20,
             'parent_id' => null,
             'heading' => null,
-            'title' => trans('webed-contact-form::base.admin_menu.title'),
-            'font_icon' => 'icon-envelope-open',
-            'link' => route('admin::contact-forms.index.get'),
+            'title' => 'Flatly',
+            'font_icon' => 'icon-puzzle',
+            'link' => '',
             'css_class' => null,
-            'permissions' => ['view-contact-forms'],
-        ]);
+            'permissions' => [],
+        ]);*/
 
         return $next($request);
     }
