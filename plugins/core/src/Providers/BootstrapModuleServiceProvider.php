@@ -1,4 +1,4 @@
-<?php namespace WebEd\Plugins\Backup\Providers;
+<?php namespace WebEd\Modules\Core\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

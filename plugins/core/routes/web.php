@@ -2,14 +2,51 @@
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
-$adminRoute = config('webed.system_route');
+$adminRoute = config('webed.admin_route');
+$systemRoute = config('webed.system_route');
 
 $moduleRoute = 'backup';
 
+
+
+Route::group(['prefix' => $adminRoute], function (Router $router) use ($adminRoute) {
+    $router->get('/', 'DashboardController@getIndex')
+        ->name('admin::dashboard.index.get')
+        ->middleware('has-permission:access-dashboard');
+
+    Route::get('/change-language/{slug}', 'DashboardLanguageController@getChangeLanguage')
+        ->name('admin::dashboard-language.get');
+
+
+    Route::get('/change-theme/{slug}', 'DashboardThemeController@getChangeTheme')
+        ->name('admin::dashboard-theme.get');
+
+
+
+    /**
+     * Commands
+     */
+    $router->get('system/call-composer-dump-autoload', 'SystemCommandController@getCallDumpAutoload')
+        ->name('admin::system.commands.composer-dump-autoload.get')
+        ->middleware('has-permission:use-system-commands');
+
+    $router->get('system/update-cms', 'SystemCommandController@getUpdateCms')
+        ->name('admin::system.commands.update-cms.get')
+        ->middleware('has-permission:use-system-commands');
+});
+
+//Route::get('{slugNum?}', 'ResolveSlug@index')->where('slugNum', '(.*)');
+
+
+
+
+
+
+
 /**
- * Admin routes
+ * Backups routes
  */
-Route::group(['prefix' => $adminRoute . '/' . $moduleRoute], function (Router $router) use ($adminRoute, $moduleRoute) {
+Route::group(['prefix' => $systemRoute . '/' . $moduleRoute], function (Router $router) use ($adminRoute, $moduleRoute) {
     /**
      * View backups
      */
